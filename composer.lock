@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "00334d6124bbbf74d35a12af81a745aa",
+    "content-hash": "c9d19aadf29f786c2267e24d1eea014c",
     "packages": [
         {
             "name": "baijunyao/laravel-print",
