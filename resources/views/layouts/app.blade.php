@@ -4,6 +4,7 @@
         <title> @yield('title','laraBBS') -Laravel官网BBS系统 </title>
         <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
         <meta name="csrf_token" content="{{csrf_token()}}">
+        @yield('styles')
     </head>
     <body>
         <div id='app' class="{{route_class()}}-page">
@@ -16,5 +17,6 @@
         </div>
         <script src="{{asset('js/app.js')}}">
         </script>
+         @yield('scripts')
     </body>
 </html>
