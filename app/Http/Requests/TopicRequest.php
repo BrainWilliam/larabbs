@@ -12,7 +12,9 @@ class TopicRequest extends Request
             case 'POST':
             {
                 return [
-                    // CREATE ROLES
+                   'title'=>'required|min:2',
+                   'body'=>'required|min:3',
+                   'category_id'=>'required|numeric'
                 ];
             }
             // UPDATE
@@ -35,7 +37,10 @@ class TopicRequest extends Request
     public function messages()
     {
         return [
-            // Validation messages
+           'title.required'=>'标题不能为空',
+           'body.required'=>'帖子不能为空',
+           'category_id.required'=>'标题不能为空',
+           'category_id.numeric'=>'标题必须为数字'
         ];
     }
 }
