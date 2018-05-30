@@ -16,7 +16,6 @@ class Topic extends Model
             case 'rencent':
                 $query->rencent();
                 break;
-
             default:
                 $query->rencentReplied();
                 break;

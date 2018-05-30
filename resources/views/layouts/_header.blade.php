@@ -45,6 +45,7 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{route('users.show',Auth::id())}}" title="">个人中心</a></li>
                             <li>
                                <a href="{{route('users.edit',Auth::user())}}" title="">编辑资料</a>
                             </li>
