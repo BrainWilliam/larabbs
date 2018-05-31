@@ -51,8 +51,6 @@
                     </select>
 
                 </div>
-
-
                     <div class="well well-sm">
                         <button type="submit" class="btn btn-primary">保存</button>
                         <a class="btn btn-link pull-right" href="{{ route('topics.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>
@@ -73,6 +71,14 @@
     <script>
         var editor = new Simditor({
             textarea: document.getElementById('editor'),
+            upload: {
+                url: '{{ route('topics.upload_img') }}',
+                params: { _token: '{{ csrf_token() }}' },
+                fileKey: 'upload_file',
+                connectionCount: 3,
+                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+            },
+            pasteImage: true,
         });
     </script>
 @stop

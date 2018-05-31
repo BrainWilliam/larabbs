@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
         <meta name="csrf_token" content="{{csrf_token()}}">
         @yield('styles')
+        <meta name="description" content="@yield('description','BBS论坛')">
     </head>
     <body>
         <div id='app' class="{{route_class()}}-page">
