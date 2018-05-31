@@ -28,4 +28,8 @@ class Topic extends Model
     public function scopeRencentReplied($query){
         return $query->orderBy('updated_at','desc');
     }
+    //友好的seo跳转
+    public function link($param=[]){
+        return route('topics.show',array_merge([$this->id,$this->slug],$param));
+    }
 }
