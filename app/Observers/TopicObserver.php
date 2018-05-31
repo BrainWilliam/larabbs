@@ -11,7 +11,8 @@ class TopicObserver
 {
     public function creating(Topic $topic)
     {
-        $topic->excerpt = make_excerpt($topic->body);
+        $topic->body = clean($topic->body);
+        $topic->excerpt = make_excerpt($topic->body,'user_topic_body');
     }
 
     public function updating(Topic $topic)
