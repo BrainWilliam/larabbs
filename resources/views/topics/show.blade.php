@@ -40,17 +40,22 @@
                     </div>
                 </div>
             </div>
-
+            @can('update',$topic)
             <div class="operate">
                 <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-default btn-sm" role="button">
                     <i class="glyphicon glyphicon-edit"> </i>
                     编辑
                 </a>
-                <a href="#" class="btn btn-default btn-sm" role="button">
-                    <i class="glyphicon glyphicon-trash"> </i>
-                    删除
+                <form action="{{route('topics.destroy',$topic->id)}}" id="deltopics" method="post" accept-charset="utf-8">
+                    {{csrf_field()}}
+                    {{method_field('DELETE')}}
+                  <button class="btn btn-default btn-sm" type="submit">  <i class="glyphicon glyphicon-trash"> </i> 删除</button>
+
                 </a>
+                </form>
+
             </div>
+            @endcan
         </div>
     </div>
 </div>
