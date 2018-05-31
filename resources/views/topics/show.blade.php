@@ -40,6 +40,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="operate">
                 <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-default btn-sm" role="button">
                     <i class="glyphicon glyphicon-edit"> </i>

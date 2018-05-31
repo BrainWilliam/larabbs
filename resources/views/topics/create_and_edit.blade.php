@@ -35,18 +35,22 @@
 
                 <div class="form-group">
                 	<label for="title-field">标题</label>
-                	<input class="form-control" type="text" name="title" id="title-field" value="{{ old('title', $topic->title ) }}" />
+                	<input class="form-control" type="text" name="title" id="title-field"
+                    value="{{ old('title', $topic->title ) }}" />
                 </div>
                 <div class="form-group">
                 	<label for="body-field">帖子</label>
-                	<textarea id="editor" name="body" id="body-field" class="form-control" rows="3">{{ old('body', $topic->body ) }}</textarea>
+                	<textarea id="editor" name="body" id="body-field" class="form-control" rows="3">
+                        {{ old('body', $topic->body ) }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="category_id-field">所属栏目</label>
                     <select name="category_id" class="form-control">
                         @foreach($category as $cate)
-                           <option value="{{$cate->id}}">{{$cate->name}}</option>
+                           <option
+                           {{$cate->id == $topic->category_id ? "selected" : ""}}
+                              value="{{$cate->id}}">{{$cate->name}}</option>
                         @endforeach
                     </select>
 
