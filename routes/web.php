@@ -38,4 +38,5 @@ Route::resource('categories','CategoriesController',['only'=>'show']);
 Route::post('upload_img','TopicsController@upload_img')->name('topics.upload_img');
 
 Route::get('topics/{topic}/{slug?}','TopicsController@show')->name('topics.show');
-Route::resource('replies', 'RepliesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+
+Route::resource('replies', 'RepliesController', ['only' => ['store','destroy']]);
