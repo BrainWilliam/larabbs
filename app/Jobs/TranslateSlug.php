@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Jobs;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use App\Handlers\SlugTranslateHandler;
+use App\Models\Topic;
+use Illuminate\Support\Facades\DB;
+
+class TranslateSlug implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    protected $topic;
+    public function __construct(Topic $topic)
+    {
+        return $this->topic = $topic; //模型id
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+       $slug = app(SlugTranslateHandler::class)->translate($this->topic->title);
+       Db::table('topics')->where('id',$this->topic->id)->update(['slug'=>$slug]);
+    }
+}

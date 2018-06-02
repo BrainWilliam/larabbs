@@ -40,10 +40,18 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#">Ta 的话题</a></li>
-                        <li><a href="#">Ta 的回复</a></li>
+                        <li class="{{active_class(!if_query('tag','reply'))}}">
+                            <a href="{{route('users.show',['id'=>$user->id])}}">Ta 的话题</a>
+                        </li>
+                        <li class="{{active_class(if_query('tag','reply'))}}">
+                            <a href="{{route('users.show',['id'=>$user->id,'tag'=>'reply'])}}">Ta 的回复</
+                        </li>
                     </ul>
-                    @include('users._topics', ['topics' => $user->topics()->rencent()->paginate(5)])
+                    @if(if_query('tag','reply'))
+                      @include('users._replies', ['replies' => $user->replies()->with('topic')->rencent()->paginate(3)])
+                    @else
+                      @include('users._topics', ['topics' => $user->topics()->rencent()->paginate(3)])
+                    @endif
                 </div>
             </div>
 
