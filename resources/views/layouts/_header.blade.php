@@ -57,6 +57,14 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
+                             @can('manage_contents')
+                                <li>
+                                    <a href="{{ url(config('administrator.uri')) }}">
+                                        <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
+                                        管理后台
+                                    </a>
+                                </li>
+                            @endcan
                             <li><a href="{{route('users.show',Auth::id())}}" title="">个人中心</a></li>
                             <li>
                                <a href="{{route('users.edit',Auth::user())}}" title="">编辑资料</a>
