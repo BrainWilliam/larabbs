@@ -2,24 +2,24 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\User;
+use Illuminate\Console\Command;
 
-class CalculateActiveUser extends Command
+class SyncUserActivedAt extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'larabbs:calculate-active-user';
+    protected $signature = 'larabbs:sync-user-actived-at';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command calculateAndCacheActiveUsers';
+    protected $description = '将用户最后登录时间从 Redis 同步到数据库中';
 
     /**
      * Create a new command instance.
@@ -33,25 +33,18 @@ class CalculateActiveUser extends Command
 
     /**
      * Execute the console command.
-     *最终执行的方法
+     *
      * @return mixed
      */
     public function handle(User $user)
     {
-        // 在命令行打印一行信息
-        $this->info("开始计算...");
-
-        $user->calculateAndCacheActiveUsers();
-
-        $this->info("成功生成！");
+        $this->info('开始同步');
+        $user->syncUserActivedAt();
+        $this->info('同步结束');
     }
 
 
 
 
 
-
-
-
-    
 }
