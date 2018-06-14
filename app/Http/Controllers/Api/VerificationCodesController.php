@@ -9,7 +9,11 @@ class VerificationCodesController extends Controller
 {
     public function store(VerificationCodeRequest $request, EasySms $easySms)
     {
-        $phone = $request->phone;
+        $captchaRes = \Cache::get($request->captcha_key);
+        if(!hash_equals($captchaRes['code'],$request->captcha_code)){
+            return $this->response->errorUnauthorized('验证码错误');
+        }
+        $phone = $captchaRes['phone'];
         if (!app()->environment('production')) {
             $code = '1234';
         } else {
@@ -18,7 +22,7 @@ class VerificationCodesController extends Controller
 
             try {
                 $result = $easySms->send($phone, [
-                    'content' => "【Lbbs社区】您的验证码是{$code}。如非本人操作，请忽略本短信",
+                    'content' => "【刘天晨】您的验证码是{$code}。如非本人操作，请忽略本短信",
                 ]);
             } catch (\GuzzleHttp\Exception\ClientException $exception) {
                 $response = $exception->getResponse();
@@ -29,6 +33,7 @@ class VerificationCodesController extends Controller
         $key       = 'verificationCode_' . str_random(15);
         $expiredAt = now()->addMinutes(10);
         \Cache::put($key, ['phone' => $phone, 'code' => $code], $expiredAt);
+        \Cache::forget($request->captcha_key);
 
         return $this->response->array(['key' => $key, 'expired_at' => $expiredAt->toDateTimeString()])->setStatusCode(201);
     }
