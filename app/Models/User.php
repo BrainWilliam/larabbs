@@ -22,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','introduction','avatar',
+        'name', 'email', 'password','introduction','avatar','phone',
     ];
     //重写notify这个方法
      public function notify($instance)
